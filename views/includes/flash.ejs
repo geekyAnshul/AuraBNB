@@ -1,0 +1,72 @@
+<% if(success && success.length) { %>
+    <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert" style="
+        background: linear-gradient(135deg, #28a745, #81c784); /* Green gradient */
+        color: white;
+        font-weight: medium;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.8); /* Green shadow */
+        transition: box-shadow 0.3s ease;
+        position: relative;"> <!-- Ensure the parent div has position: relative -->
+        
+        <%= success %>
+    
+        <!-- Button centered on Y-axis (vertically) -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="
+            outline: none;
+            padding: 5px;
+            position: absolute;
+            top: 50%; /* Center vertically */
+            right: 10px; /* Keep it near the right edge */
+            transform: translateY(-50%); /* Adjust to make it perfectly centered vertically */
+        ">
+        </button>
+    
+    </div>
+    
+    <style>
+        .btn-close:hover {
+            background-color: #81c784; /* Hover color matching the green gradient */
+        }
+    </style>
+<% } %>
+
+  
+  
+  <% if(error && error.length) { %>
+        <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert" style="
+            background: linear-gradient(135deg, #ff414d, #ff8c8e);
+            color: white;
+            font-weight: medium;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(255, 66, 77, 0.8);
+            transition: box-shadow 0.3s ease;
+            position: relative;"> <!-- Ensure the parent div has position: relative -->
+            
+            <%= error %>
+        
+            <!-- Button centered on Y-axis (vertically) -->
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="
+               
+            color: white;
+                outline: none;
+                padding: 5px;               
+                position: absolute;
+                top: 30%; /* Center vertically */
+                right: 10px; /* Keep it near the right edge */
+                transform: translateY(-50%); /* Adjust to make it perfectly centered vertically */
+               
+            ">
+            </button>
+        
+        </div>
+        
+        <style>
+            .btn-close:hover {
+                background-color: #ff8c8e;
+                color: white;
+            }
+        </style>
+        <% } %>
+        

@@ -1,0 +1,105 @@
+<% layout("/layouts/boilerPlate") -%>
+<body>
+    <div class="contain mt-2">
+        <!-- Correct method to use POST and _method for PUT -->
+        <form method="POST" action="/listings/<%= listing.id %>?_method=PUT" class="p-4 rounded shadow" style="background-color: #fff;">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title :</label>
+                <input type="text" id="title" name="listing[title]" value="<%= listing.title %>" class="form-control" placeholder="Enter the hotel name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description :</label>
+                <textarea name="listing[description]" id="description" class="form-control" required placeholder="Describe the hotel amenities, services, and unique features"><%= listing.description %></textarea>
+            </div>
+
+            <div class="d-flex mb-3">
+                <div class="flex-fill me-2">
+                    <label for="price" class="form-label">Price per night:</label>
+                    <input type="number" id="price" name="listing[price]" value="<%= listing.price %>" class="form-control" placeholder="Enter the price per night in Rupees" required>
+                </div>
+
+                <div class="flex-fill">
+                    <label for="country" class="form-label">Country:</label>
+                    <input type="text" id="country" name="listing[country]" value="<%= listing.country %>" class="form-control" placeholder="Enter the country where the hotel is located" required>
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <img src="<%= listing.image %>" alt="img">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image URL:</label>
+                <input type="url" id="image" name="listing[image]" value="<%= listing.image %>" class="form-control" placeholder="Provide a direct link to the hotel image" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" id="location" name="listing[location]" value="<%= listing.location %>" class="form-control" placeholder="Specify the hotel address" required>
+            </div>
+
+            <button type="submit" class="btn custom-button">Update Details</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for animations and hover effects */
+        .contain {
+            transition: all 0.5s ease;
+            border-radius: 5px;
+        }
+        
+        .contain:hover {
+            border-color: #ff0112;
+            box-shadow: 0 0 8px #ff0112;
+        }
+
+        .form-control {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #ff414d;
+            box-shadow: 0 0 5px rgba(255, 65, 77, 0.5);
+            outline: none;
+        }
+
+        .custom-button {
+            background: linear-gradient(135deg, #ff414d, #e63946); /* Gradient background */
+            color: white;
+            border: none;
+            width: 150px;
+            padding: 6px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .custom-button:hover {
+            color: #fff;
+            transform: scale(1.05); /* Slight scaling effect */
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.6), /* Glow effect */
+                        0 0 20px rgba(230, 57, 70, 0.4);
+        }
+
+        .shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .shadow:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        img{
+            height: 300px;
+            width: 400px;
+            object-fit: contain;
+            
+        }
+    </style>
+</body>
+
+

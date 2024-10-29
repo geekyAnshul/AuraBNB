@@ -1,0 +1,114 @@
+
+ <% layout("/layouts/boilerPlate") -%>
+ <body>
+     <div class="contain mt-2">
+         <form method="POST" action="/listings" novalidate class="p-4 rounded shadow needs-validation" style="background-color: #fff;">
+             <div class="mb-3">
+                 <label for="title" class="form-label">Title :</label>
+                 <!-- <input type="text" id="title" name="listing[title]" placeholder="Enter the hotel name" class="form-control" required/> -->
+                 <input type="text" id="title" name="listing[title]" placeholder="Enter the hotel name" class="form-control" required aria-label="Hotel name"/>
+
+                 <div class="valid-feedback">Hotel name is valid</div>
+                 <div class="invalid-feedback">Invalid or missing hotel name.</div>
+             </div>
+             
+ 
+             <div class="mb-3">
+                 <label for="description" class="form-label">Description :</label>
+                 <textarea name="listing[description]" id="description" class="form-control" placeholder="Describe the hotel amenities, services, and unique features" required></textarea>
+                 <div class="valid-feedback">Description is valid.</div>
+                 <div class="invalid-feedback">Invalid or missing description.</div>
+                </div>
+ 
+             <div class="d-flex mb-3">
+                 <div class="flex-fill me-2">
+                     <label for="price" class="form-label">Price per night:</label>
+                     <input type="number" id="price" name="listing[price]" placeholder="Enter the price per night in Rupees" class="form-control" required>
+                     <div class="valid-feedback">Price is valid.</div>
+                     <div class="invalid-feedback">Invalid or missing price.</div>
+                    </div>
+ 
+                 <div class="flex-fill">
+                     <label for="country" class="form-label">Country:</label>
+                     <input type="text" id="country" name="listing[country]" placeholder="Enter the country where the hotel is located" class="form-control" required>
+                     <div class="valid-feedback">Country is valid.</div>
+                     <div class="invalid-feedback">Invalid or missing Country.</div>
+                    </div>
+             </div>
+              
+             <div class="mb-3">
+                 <label for="image" class="form-label">Image URL:</label>
+                 <input type="url" id="image" name="listing[image]" placeholder="Provide a direct link to the hotel image" class="form-control" required>
+                 <div class="valid-feedback">URL is valid.</div>
+                 <div class="invalid-feedback">Invalid or missing image URL</div>
+                </div>
+ 
+             <div class="mb-3">
+                 <label for="location" class="form-label">Location:</label>
+                 <input type="text" id="location" name="listing[location]" placeholder="Specify the hotel address" class="form-control" required>
+                 <div class="valid-feedback">Location is valid.</div>
+                 <div class="invalid-feedback">Invalid or missing Location</div>
+                </div>
+ 
+             <button type="submit" class="btn custom-button">Add</button>
+         </form>
+     </div>
+ 
+     <!-- Bootstrap CSS -->
+     
+     
+     <style>
+         /* Custom styles for animations and hover effects */
+         .contain{
+            transition: all 0.5s ease;
+            border-radius: 5px;
+            margin-bottom: 60px;
+         }
+         .contain:hover{
+            border-color: #ff0112;
+            box-shadow: 0 0 8px #ff0112;
+         }
+         
+
+         .form-control {
+             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+         }
+ 
+         .form-control:focus {
+             border-color: #ff414d;
+             box-shadow: 0 0 5px rgba(255, 65, 77, 0.5);
+             outline: none;
+         }
+ 
+         .custom-button {
+            background: linear-gradient(135deg, #ff414d, #e63946); /* Gradient background */
+            color: white;
+            border: none;
+            width: 150px;
+            padding: 6px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .custom-button:hover {
+            color: #fff;
+            transform: scale(1.05); /* Slight scaling effect */
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.6), /* Glow effect */
+                        0 0 20px rgba(230, 57, 70, 0.4);
+        }
+        
+        
+ 
+         .shadow {
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+         }
+ 
+         .shadow:hover {
+             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+         }
+     </style>
+ </body>
+ 
+
+

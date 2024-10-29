@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md  bg-body-light sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listings">
+        <!-- <i class="fa-regular fa-compass"></i> -->
+         <h1 class="head"><i class="fa-solid fa-spa"></i>AuraBNB</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav text-dark text-gray">
+          <a class="nav-link text-black text-gray menus" aria-current="page" href="/listings">Explore</a>
+          
+         </div>
+
+         <div class="navbar-nav text-dark ms-auto">
+          <a class="nav-link text-secondary menus"  href="/listings/new">Add New BNB</a>
+          <% if(!currUser) { %>
+          <a class="nav-link text-dark" aria-current="page" href="/signup">SignUp</a>
+          <a class="nav-link text-dark " href="login">LogIn</a>
+          <% } %>
+          <% if(currUser) { %>
+          <a class="nav-link text-dark" href="logout">LogOut</a>
+          <% } %>
+         </div>
+      </div>
+    </div>
+  </nav>
+
+  <style>
+    .head{
+      font-family: "Play", sans-serif;
+      color:#ff646f ;
+      font-size: 25px;
+      font-weight: 600;
+      margin-top: 5px;
+      letter-spacing: -1px;
+    
+    }
+    .menus{
+      font-weight: 500;
+      font-size: 18px;
+      color: #6c6c6c;
+    }
+    
+   
+    
+    
+
+  </style>

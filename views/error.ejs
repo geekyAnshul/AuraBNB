@@ -1,0 +1,84 @@
+<% layout("/layouts/boilerPlate") -%>
+<body>
+    <div class="error-container">
+        <div class="error-content">
+             <h1 class="error-status"><%= err.status %></h1> 
+            <h2 class="error-message"><%= err.message %></h2>
+            <p class="error-description">Oops! Something went wrong. Don't worry, we're working on it.</p>
+            <a href="/" class="btn home-button">Back to Home</a>
+        </div>
+    </div>
+
+    <style>
+        /* Background styling */
+        body {
+            background: linear-gradient(135deg, #ff414d, #ff8c8e);
+            
+            height: 100vh;
+        }
+
+        /* Error container */
+        .error-container {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            margin: auto;
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect for the error card */
+        .error-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Error status code */
+        .error-status {
+            font-size: 6rem;
+            background: linear-gradient(135deg, #ff414d, #ff8c8e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* Error message */
+        .error-message {
+            font-size: 2rem;
+            color: #ff414d;
+            margin-bottom: 15px;
+        }
+
+        /* Error description */
+        .error-description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* Back to home button */
+        .home-button {
+            background-color: #ff414d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #e63946;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 65, 77, 0.6), 0 0 20px rgba(255, 65, 77, 0.4);
+        }
+    </style>
+</body>
+
+
+     

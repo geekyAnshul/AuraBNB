@@ -1,0 +1,60 @@
+<% layout("/layouts/boilerPlate") -%>
+
+<body>
+    <div class="contain col-6 offset-3">
+        <h1>LogIn on Aurabnb</h1>
+        <form method="POST" action="/login" novalidate class="p-4 rounded shadow needs-validation" style="background-color: #fff;">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username :</label>
+                <!-- <input type="text" id="title" name="listing[title]" placeholder="Enter the hotel name" class="form-control" required/> -->
+                <input type="text" id="username" name="username" placeholder="Enter your Username" class="form-control mb-3" required aria-label="Hotel name"/>
+
+                <label for="password" class="form-label">Password :</label>
+                <!-- <input type="text" id="title" name="listing[title]" placeholder="Enter the hotel name" class="form-control" required/> -->
+                <input type="password" id="password" name="password" placeholder="Enter Strong Password" class="form-control mb-3" required aria-label="Hotel name"/>
+
+               <button>Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<style>
+    form{
+        margin-bottom: 137px;
+    }
+    h1{
+        color:#ffffff;
+        margin: 10px;
+        margin-bottom: 25px;
+        font-size: 50px;
+    }
+    body{
+       
+        
+            height: 100vh; /* Full height of the viewport */
+            background-image: url('https://digwallpapers.com/wallpapers/full/7/3/4/17700-3840x2160-red-gradient-wallpaper-image-desktop-4k.jpg'); /* Specify the image path */
+            background-size: cover; /* Cover the entire div */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+        
+    }
+    button {
+        background: linear-gradient(45deg, #ff414d, #ff6b81);
+        color: white;
+        outline: none;
+        padding: 4px 10px;
+        border: none;
+        width: 120px;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: all 0.3s ease, transform 0.2s ease;
+    }
+    
+    button:hover {
+        background: linear-gradient(45deg, #ff6b81, #ff414d); /* Reverse the gradient */
+        transform: scale(1.05); /* Slightly increase size */
+    }
+    
+   
+</style>

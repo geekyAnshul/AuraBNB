@@ -1,0 +1,162 @@
+<% layout("/layouts/boilerPlate") -%>
+
+<body>
+       <div class="filter">
+        <div class="category">
+            <i class="fa-solid fa-fire"></i>
+            <p>Specials</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-house-chimney-crack"></i>
+            <p>FarmHouse</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-tent-arrow-down-to-line"></i>
+            <p>Tiny House</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-spa"></i>
+            <p>Luxury</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-mountain-city"></i>
+            <p>CountrySide</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-bed-pulse"></i>
+            <p>Bed Rest</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-vihara"></i>
+            <p>ResearchGate</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-city"></i>
+            <p>Mountain Site</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-hotel"></i>
+            <p>5 Star</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-place-of-worship"></i>
+            <p>Historical Homes</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-gopuram"></i>
+            <p>Temples</p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-house-lock"></i>
+            <p>DND Homes</p>
+        </div>
+
+        
+       </div>
+       <ul class="gal">
+       
+        <% for(let listing of allListing){ %>
+          <a class="anchor" href="/listings/<%= listing.id %>">
+          <div class="card text-wrap" style="width: 18rem;">
+            <img class="card-img-top img" src="<%= listing.image %>" alt="listing_images">
+            <div class="card-body p-1">
+              <h4 class="text-wrap title"><%= listing.title %></h4>
+              <h6 class="text-wrap price">₹<%= listing.price.toLocaleString("en-IN") %></h6>
+              <p class="card-text text-wrap lh-2 desc"><%= listing.description %></p>
+            </div>
+          </div>
+          </a>
+        <% } %>
+      </ul>
+      
+
+
+<style>
+  
+  .btn{
+      border-radius: 50%;
+      text-align: center; 
+      transition: all 0.3s ease-in-out;
+  }
+  .btn:hover{
+      transform: scale(1.1) translateY(-5px);
+  }
+  .anchor{
+      text-decoration: none;
+  }
+  .card{
+      border: none !important;
+      background-color: #f8f8f8;
+      text-decoration: none;
+      padding: 1em;
+      transition: transform 0.3s ease, box-shadow 0.3s ease , background-color 0.3s ease;
+  }
+  .card:hover{
+      background-color: #f1f1f1;
+      transform: scale(1.005); /* Scale the card slightly */
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  }
+  .gal{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+  }
+  .img{
+      height: 150px;
+      object-fit: cover;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-radius: 5px;
+      cursor:pointer;
+  }
+  .title{
+      cursor: pointer;
+      color: rgb(37, 37, 37);
+      font-size: 20px;
+      
+  }
+  .desc{
+      color: rgb(41, 41, 41);
+      line-height: 20px;
+  }
+  .price{
+      color: rgb(7, 176, 7);
+  }
+  .category{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+    font-size: 13px;
+  }
+  .category:hover{
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  .category i{
+    font-size: 18px;
+  }
+
+  .filter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+  }
+</style>
+</body>
+

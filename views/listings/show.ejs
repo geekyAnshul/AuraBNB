@@ -1,0 +1,333 @@
+<% layout("/layouts/boilerPlate") -%>
+<body> 
+    <div class="card" style="width: 60rem; margin: 5px auto;">
+        <h4 class="name"><%= listing.title %></h4>
+        <div class="image-hover-effect">
+        <img class="card-img-top image" src="<%= listing.image %>" alt="<%= listing.title %>">
+       </div>
+        <div class="card-body p-0">
+            <i class="owner">Owned by : <%= listing.owner.username %> </i>
+          <h4 class="card-text desc"><%= listing.description %></h4>
+          <h4 class="price">₹<%= listing.price.toLocaleString("en-IN") %></h4>
+           <h4 class="location"><%= listing.location %></h4>
+           <h4 class="country"><%= listing.country %></h4>
+           
+        </div>
+       
+         <% if(currUser && currUser._id.equals(listing.owner._id)) { %> 
+                  <div class="flex">
+            <a href="/listings/<%= listing._id %>/edit" class="btn-danger">Edit</a>
+       <form method="POST" action="/listings/<%= listing.id %>?_method=DELETE">
+        <button class="delete">Delete</button>
+       </form>
+        </div>
+
+         <% } %> 
+        <hr>
+        <% if(currUser){ %>
+        <h4 class="form-title mt-2 h2 mb-5">Leave a Review</h4>
+<form method="post" action="/listings/<%= listing.id %>/reviews" novalidate class="review-form needs-validation">
+    <div class="form-group mb-3">
+        <label for="rating" class="form-label"><b>Give Star Ratings</b></label>
+        <!-- <input type="range" name="review[rating]" id="rating" min="1" max="5" class="form-range"> -->
+    </div>
+    <fieldset class="starability-slot">
+        <!-- <legend>First rating:</legend> -->
+        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+    <div class="form-group mt-3">
+        <label for="comment" class="form-label"><b>Comment</b></label>
+        <textarea name="review[comment]" id="comment" rows="5" cols="30" class="form-control" required></textarea>
+        <div class="invalid-feedback">Empty or Invalid Review</div>
+    </div>
+   
+    <button class="delete submit-btn mt-3">Submit</button>
+</form>
+ 
+  <hr class="mt-4 mb-4">
+  <% } %>
+  <!-- <h4>All Reviews</h4>
+  <div>
+    <% for( review of listing.reviews){ %>
+       <div><%= review.comment %> , <%= review.rating %> stars</div>
+    <% } %>
+</div> -->
+<h4 class="h2">All Reviews</h4>
+<div class="reviews-container">
+    <% for (review of listing.reviews) { %>
+        <div class="review-card">
+            <div class="flexx">
+            <h3 class="user"><%= review.author.username %></h3>
+            <p class="review-comment"><%= review.comment %></p>
+           <!-- <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"> -->
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                <button> <i class="fa-solid fa-circle-xmark"></i></button>
+           </form>
+            </div>
+            <p class="starability-result rate" data-rating="<%= review.rating %>">
+                Rated: 3 stars
+              </p>
+            <div class="review-rating shiny-text">Rating: <%= review.rating %> stars</div>
+        </div>
+    <% } %>
+</div>
+
+
+
+      </div>
+    <br><br>
+    
+
+
+   
+        
+</body> 
+
+<style>
+
+   .owner{
+    position:absolute;
+    color: rgb(202, 202, 202);
+    top: 6.5%;
+    left: 1%;
+    font-size: 10px;
+   }
+   
+
+    .name {
+        background: linear-gradient(135deg, #ff414d, #ff8c8e); /* Example gradient */
+        -webkit-background-clip: text; /* For Safari */
+        background-clip: text; /* For other browsers */
+        color: transparent; /* Makes the text color transparent to show the gradient */
+        font-size: 1.5rem; /* Adjust font size as needed */
+        font-weight: bold; /* Optional: make the text bold */
+    }
+    .user{
+        font-size: 20px;
+    }
+    
+    
+    .name{
+        font-size: 50px;
+        font-weight: 600;
+        
+    }
+    .card{
+        width: 400px;
+        border: none;
+    }
+    .price,.location,.country,.desc{
+        font-size: 18px;
+        color: rgb(79, 79, 79);
+    }
+    
+
+    .flexx form button{
+        border: none;
+        background-color: transparent;
+    }
+
+    .flexx form button i{
+        font-size: 30px;
+        margin-left: 5px;
+        color: rgb(255, 255, 255);
+        transition: all 0.3s ease;
+        position: absolute;
+        top: -4px;
+        right: -4px;
+    }
+    .flexx form button i:hover{
+          transform: scale(1.5);
+          color: rgb(245, 245, 245);
+    }
+    
+    .desc{
+        color: rgb(0, 0, 0);
+        font-size: 19px;
+    }
+    .price{
+        color: rgb(0, 153, 0);
+    }
+    .delete {
+        background: linear-gradient(135deg, #333333, #000000); /* Black gradient */
+        color: white; /* Text color */
+        width: 100px;
+        font-weight: 500;
+        border: none; /* Remove border */
+        padding: 6px 15px; /* Padding for button */
+        border-radius: 5px; /* Rounded corners */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
+    }
+    
+    .delete:hover {
+        transform: scale(1.05); /* Slightly scale up on hover */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Glow effect */
+        background: linear-gradient(135deg, #000000, #333333); /* Change gradient direction on hover */
+        color: #fff; /* Maintain text color on hover */
+    }
+    
+    .flex{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .btn-danger {
+        background: linear-gradient(135deg, #ff414d, #ff8c8e); /* Pink gradient */
+        width: 100px;
+        text-align: center;
+        text-decoration: none;
+        color: rgb(255, 255, 255); /* Text color */
+        font-weight: 500;
+        border: none; /* Remove border */
+        padding: 6px 15px; /* Padding for button */
+        border-radius: 5px; /* Rounded corners */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
+    }
+    
+    .btn-danger:hover {
+        transform: scale(1.05); /* Slightly scale up on hover */
+        box-shadow: 0 4px 20px rgba(255, 140, 142, 0.5); /* Glow effect */
+        background: linear-gradient(135deg, #ff8c8e, #ff414d); /* Change gradient direction on hover */
+        color: #ffffff; /* Change text color on hover */
+    }
+    
+    
+    .image-hover-effect {
+        width: 50em;
+        border-radius: 10px;
+        position: relative; /* Position for the shadow */
+        overflow: hidden; /* Hide overflow for the scaling effect */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    }
+    
+    .image-hover-effect img {
+        object-fit: cover;
+        border-radius: 10px;
+        display: block; /* Remove bottom space */
+        width:100%; /* Full width */
+        height: 24em;
+        margin-bottom: 10px;
+         /* Maintain aspect ratio */
+        transition: all 0.9s ease; /* Transition for scaling */
+    }
+    
+    .image-hover-effect:hover img {
+        border-radius: 12px;
+        transform: scale(1.2); /* Scale and rotate on hover */
+        filter: brightness(1.1); /* Slightly brighten the image */
+    }
+    
+    .image-hover-effect::after {
+        content: ''; /* Create a pseudo-element for shadow */
+        position: absolute; /* Positioning for the shadow */
+        top: 0; /* Align to the top */
+        left: 0; /* Align to the left */
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background: rgba(0, 0, 0, 0.2); /* Semi-transparent black shadow */
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s ease; /* Smooth transition for shadow */
+    }
+    
+    .image-hover-effect:hover::after {
+        opacity: 1; /* Show shadow on hover */
+    }
+    .submit-btn {
+        background: linear-gradient(135deg, #ff414d, #ff8c8e);
+        color: white;
+        font-weight: 600;
+        width: 10%;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 140, 142, 0.5);
+    }
+   .reviews-container{
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+   }
+    .review-card {
+        position: relative; /* Required for positioning pseudo-element */
+        background: white; /* White background */
+        color: rgb(0, 0, 0); /* Text color */
+        width: 200px;
+        padding: 15px; /* Padding for card */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transition for shadow and transform */
+        margin-bottom: 15px; /* Space between cards */
+    }
+    
+    /* Pseudo-element for gradient border */
+    
+    
+    .review-card:hover  {
+        color: rgb(255, 255, 255);
+        box-shadow: 0 8px 20px rgba(255, 26, 0, 0.5); /* Enhanced shadow with pink gradient effect on hover */
+        transform: translateY(-5px); /* Slight upward movement on hover */
+        .review-rating{
+            color: white;
+        }
+    }
+    .review-card::before {
+        content: ""; /* Required for pseudo-element */
+        position: absolute; /* Position it relative to the card */
+        top: 0; /* Align to the top */
+        left: 0; /* Align to the left */
+        right: 0; /* Align to the right */
+        bottom: 0; /* Align to the bottom */
+        border-radius: 10px; /* Match the card's border radius */
+        background: linear-gradient(135deg, #ff414d, #ff8c8e); /* Gradient background */
+        z-index: -1; /* Place it behind the card content */
+        padding: 2px; /* Thickness of the border */
+        border-radius: 10px; /* Match the card's border radius */
+    }
+    .review-comment {
+        font-size: 0.8em; /* Comment font size */
+        margin-bottom: 10px;
+        font-weight: 500;
+
+    }
+    
+    .review-rating {
+        font-size: 0.9em; /* Rating font size */
+        font-weight: 400; /* Bold rating text */
+        color: #000000;
+    }
+    
+    .shiny-text {
+        color: #616161; /* Gold-like yellow */
+        font-weight: bold;
+        text-shadow: 0 0 10px #FFF700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+        transition: text-shadow 0.3s ease;
+    }
+
+    .shiny-text:hover {
+        text-shadow: 0 0 20px #FFF700, 0 0 40px #FFD700, 0 0 60px #FFD700;
+    }
+    
+    
+
+    
+</style>
+
+
